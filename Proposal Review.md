@@ -72,9 +72,22 @@ I talked about this aspect in my long-term vision for this project, but essentia
 
 ## I would like to see a risk mitigation strategy.
 
+This is something I'm still working on. Would love to hear more advice and suggestions on this. In terms of keeping the game risk averse in relation to DeFi, one of the benefits of using Paima Engine is that it separates the gameplay from the crypto functionality. 
+By being a sovereign rollup, we can iterate on game design without affecting the liquidity on chain. Additionally, by using Paima's primitive's like Projection NFTs, we can have a lot more flexibility without too much risk.  
+
+Of course, the main tournament and staking smart contracts will have to be carefully designed and audited as it's being written, so that's something to take note of.
+
 
 ## I would like to see the team info section completed.
 
-
+At this point, Tower of Greed is going to start as a solo project. As mentioned before, once the project is funded, I hope to incentivize current Mina Navigators to help in building the Zeko L2 contracts to speed up development. Additionally, some funding will also be used to get custom art and music for the game.  
 
 ## What is your value preposition? What is unique about your game? If you want to bring non-blockchain people to the blockchain gaming industry, you will be competing with web2 games. I would like to see more quantification over your unique selling point.
+
+Tower of Greed is a spin on a popular game from the pokemon franchise: Pokemon Mystery Dungeon. Except, it's fully PvP.
+The value preposition for the game are two fold: For casual gamers, ToG is a game that combines two unique and seemingly unrelated genres: turn-based rpg and battle royale. 
+For the crypto native, ToG uses the latest technologies in the blockchain space like staking and points to create hype and bring value to the community while building a fun and enjoyable game. 
+
+There's still more details I'll be adding to the draft, but my response is getting really big so I'll have to cut it here.
+
+Thanks for the questions!
