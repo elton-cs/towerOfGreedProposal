@@ -1,6 +1,21 @@
 # PROPOSAL REVIEW
 
-## I would like to understand a bit more about the requirement of using MINA in your project. Please further explain why MINA.
+<!-- Robin Sarfati -->
+
+## Do you have details on the team ? are you related to the builders of Paima / zeko ? Also I am not sure to understand the role of arbitrum in the proposal it seems to engage users, in the githu I see the entry fees for the game in MINA token. Also arbitrum integration wouldn't be in the standard scope, am I understanding it right ? 
+
+Hey there! Thanks for the questions.
+1. I’m currently a one man team. I’ve been active around the discord but I haven’t had anyone reach out to collaborate yet, so for the time being it’s going to stay a solo project, which is fine by me. My plans for working with a team is probably going be to getting some active Mina navigators to help contribute, and I’ll do so with some of the funding I receive.
+2. I am not related to the builders of Paima or Zeko, just an enthusiast of their tech stack and vision. I’ve been researching them since they announced their ZK layer blog back in December (https://blog.paimastudios.com/paima-zk-layer) and I’ve really delved deep into their ecosystem to learn and I’m ready to build.
+3. The entry fees were initially denoted in MINA but will probably change to ETH on Arbitrum. Also the Arbitrum implementation is still a work-in-progress and depends on a few factors. (1) Paima is also proposing some useful features to implement Mina interoperability with Paima during this cohort, and a lot of their features can and will be used with Tower of Greed. What they build and get funded for will impact the work I need to do to incorporate ToG with Mina. If there’s more Mina Paima primitives being built out by the Paima team, there will be more Arbitrum features I can add to the standard scope. (2) So with that in mind, I’m currently shooting for using Arbitrum for the entry fees for the game, and use Mina to store the Zeko rolled up game state instances. In this scenario, the fees will be denoted in ETH. But again, this is subject to change over the coming days.
+
+If you’d like to see more info on the project, please follow this github repo as well: https://github.com/elton-cs/towerOfGreedProposal
+
+Thanks for your questions!
+
+<!-- Nicolas Manea -->
+
+## 1. I would like to understand a bit more about the requirement of using MINA in your project. Please further explain why MINA.
 
 The main reason for choosing MINA over other platforms for Tower of Greed is to leverage MINA's recursive zk proof system to create scalable game instances. When playing ToG, players send actions, like moving and attacking, in parallel. Because of this, these actions are private inputs that cannot be sent as open and public transactions to a typical blockchain functioning as a public ledger. To solve this issue of having a game require secret inputs WHILE NOT relying on a trusted third party (which is how games are usually built in a server model), we use MINA's smart contract and zkprogram libraries to build the game. More specifically, this will be done by using Zeko L2 instances, which would be faster and provide more throughput for individual game instances while not depending on a centralized game server to act honest. Instead the game node will be responsible for proving the user's inputs and creating recursive proofs that contain the state of the game over time. 
 
@@ -9,7 +24,7 @@ ToG is heavily inspired by the proposed model written by Paima Studios about usi
 Additionally, as mentioned in a previous response, some of the details for using MINA as the interaction layer (as opposed to an EVM like Arbitrum) will depend on the progress Paima has with their cohort 3 proposal. But at the very least, I do plan to have tournaments that use MINA tokens as entry fees and do payouts directly on MINA. To refresh, tournament mode is going to be a game mode where players have to deposit a token fee to enter the "Tower of Greed," once inside, the players fight each other until only one player stands. Upon winning, this player gets to redeem the tokens of the losers. For example: 5 players enter a tournament and each deposit 2 mina. They play the game until one player remains, who gets rewards the sum of 10 mina for winning. Paima Studios has plans to make this kind of implementation more streamlined through their Paima Engine, but of course if that doesn't work out, I'd go forward with doing it myself. In the meantime, given the significant liquidity pool and mindshare of EVM compatible chains like Arbitrum, incorporating this functionality on this front would garner more users overall. 
 
 
-## In your problem statement you are mentioning that you want to build a game that does not advertise crypto as its most valuable feature, yet it just happens to use blockchain tech in the backend. But your revenue generating strategy is heavily crypto related (in the web2 gaming space, can you name an example where the player has to lock in +$2,000 to play a newly released game, yes you do have other options, but I would say this is not a traditional gaming revenue strategy). I think this is contradictory.
+## 2. In your problem statement you are mentioning that you want to build a game that does not advertise crypto as its most valuable feature, yet it just happens to use blockchain tech in the backend. But your revenue generating strategy is heavily crypto related (in the web2 gaming space, can you name an example where the player has to lock in +$2,000 to play a newly released game, yes you do have other options, but I would say this is not a traditional gaming revenue strategy). I think this is contradictory.
 
 I'd like to address this question first before I talk about my go-to-market strategy. Upon first glance, I'll admit it does seem contradictory, but I hope I can provide more information to convince you otherwise. 
 
@@ -33,7 +48,7 @@ And this is just the tip of the iceberg. I have so many more ideas but I'm tryin
 
 From what I've planned so far, the stake-to-play model and the points system will be part of the Advanced Scope Track, while the regular Crypto Edition with tournament mode will be part of the Normal Scope. 
 
-## I would like to get more information on your go-to-market strategy. How are you planning to acquire new users? How are you going to launch the game? How are you going to get to 1000 daily users? I think an organic growth-based strategy will involve less risk.
+## 3. I would like to get more information on your go-to-market strategy. How are you planning to acquire new users? How are you going to launch the game? How are you going to get to 1000 daily users? I think an organic growth-based strategy will involve less risk.
 
 Standard Edition: Follows the normal indie game timeline. Essentially using Steam as the main platform to market the game from development to launch. 
 
@@ -89,5 +104,37 @@ The value preposition for the game are two fold: For casual gamers, ToG is a gam
 For the crypto native, ToG uses the latest technologies in the blockchain space like staking and points to create hype and bring value to the community while building a fun and enjoyable game. 
 
 There's still more details I'll be adding to the draft, but my response is getting really big so I'll have to cut it here.
+
+Thanks for the questions!
+
+<!-- Rahul Ghangas -->
+
+Great idea, a few questions that are unclear from the proposal.
+
+## 1. I don’t completely follow how recursive zk proofs are used in the game. If you intend to use recursive zk proofs for state change corresponding to each action, action can be inferred from the final state (which is public) when a transaction is submitted. How exactly are transactions being hidden here?
+
+One entire game session runs on a Zeko instance. There are two things that happen here:
+
+First, the Zeko instance itself can (and probably will) be private so no player can see what another player's actions are until the entire game is over. In this case, only the game node could have access to this information, which while not ideal, is better than trusting the players to act honestly. 
+
+Second, another layer of privacy is using o1js' zkProgram module to create recursive proofs where each player's actions are totally private and no one can tell what move's were made. In this case, the prover (the game node in this case) can only combine the players' proofs into a new recursive proof to post on the Zeko instance. When doing this, the public output can only be the state of the game on round prior (which would include things like player location, healths, etc.) Which shouldn't matter since the movement and attack options give enough randomness that inferring a player's next move would be difficult to do. 
+
+## 2. How does interoperability between Zeko and arbitrum work? Can you explain or link relevant resources?
+
+The following article pretty much explains the relationship between Zeko and Arbitrum:
+
+https://blog.paimastudios.com/paima-zk-layer/
+
+## 3. Game (including on chain) architecture and how Mina zkapps are used is still unclear, please elaborate.
+
+I'm currently working on this to add to the current proposal. I should have a more detailed description in a little bit. 
+
+## 4. Finally, my biggest concern is the dependency on two other nascent projects. A lot of assumptions are made w.r.t the development of both those projects, which cannot be guaranteed until someone from these projects is directly on the team to guarantee that.
+
+So Paima Engine is fairly well established in the gaming space. They've been present for nearly two years so while there can be a concern with this dependency, the entire proposal relies on the fact that we're building a game on Paima. But in terms of risk mitigation, it's still entirely possible to build the game without it, there's just a lot of streamlining and niceties that come with using Paima Engine. 
+
+Zeko is probably the weaker link of the two, as it hasn't been released yet. However, given that Zeko is essentially just a faster MINA but less restrictions, it shouldn't add much overhead to development. Additionally, if for some reason Zeko doesn't work as a rollup, I still Protokit as a backup that can be used to build the game. Protokit is also another rollup that's actively being developed in the Mina ecosystem, and they were a project that came from cohort 1. 
+
+As a last resort, the game can still be built purely with Mina with most of the tournament functionality, the only thing that would not be feasible within the 3 month time frame would be the stake-to-play features on EVM compatible chains, but this falls under the advanced track and again, relies on the assumption that Paima and Zeko are functioning as intended.
 
 Thanks for the questions!
