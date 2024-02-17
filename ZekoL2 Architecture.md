@@ -23,7 +23,7 @@ In this section, we'll delve deeper into the Zeko architecture
 4. A copy of GameStartProof is sent to each of the players to verify and proof is posted onto Zeko 
 
 ### Game Rounds Begin
-5. Each player makes their move and sends them to the Zeko as a transaction.
+5. Each player makes their move and sends them to the Zeko instance as a transaction.
 6. After all 4 players make their move, the game node processes the Paima game state, and posts the new changes of map and player attributes to the Zeko
 7. These two main processes loop until one player remains
 
@@ -31,3 +31,7 @@ In this section, we'll delve deeper into the Zeko architecture
 8. Final game state concludes in Zeko, which is then rolled up and posted as a single proof unto Mina
 9. Winner runs claim() function on Arbitrum
 10. claim() uses lambdaClass zkBridge to get Mina state, verifies information, and releases reward to winner
+
+
+On chain State:
+5 Fields, each being a hash of the player's location
